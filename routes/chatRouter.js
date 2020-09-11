@@ -36,10 +36,9 @@ chatRouter.route('/:roomId')
               {
                   name: room.name,
                   message: room.message,
-                  timestamp: room.timestamp,
-                  received: room.received,
+                  updatedAt: room.updatedAt,
                   author: room.author,
-                  id:room._id
+                  _id:room._id
               }
               )
         res.statusCode = 200;
@@ -54,14 +53,13 @@ chatRouter.route('/')
     Chats.create(req.body)
     .then((room) => {
         console.log('message Created ', room);
-        pusher.trigger( room.room ,'inserted',
+        pusher.trigger( `token-${room.room}` ,'inserted',
               {
-                  name: room.name,
-                  message: room.message,
-                  timestamp: room.timestamp,
-                  received: room.received,
-                  author: room.author,
-                  id:room._id
+                name: room.name,
+                message: room.message,
+                updatedAt: room.updatedAt,
+                author: room.author,
+                _id:room._id
               }
               )
         res.statusCode = 200;

@@ -106,7 +106,7 @@ app.get('/',(req,res)=>res.status(200).send('hello world'))
 // })
 
 app.use('/rooms',roomRouter);
-app.use('/messages',messageRouter);
+// app.use('/messages',messageRouter);
 app.use('/chats',chatRouter);
 
 // app.use(function(req, res, next) {

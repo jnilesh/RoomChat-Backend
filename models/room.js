@@ -2,13 +2,23 @@ const mongoose = require('mongoose');
 
 const roomschema = new mongoose.Schema({
     name:{
-        type: String
+        type: String,
+        required: true,
+        unique: true
     },
     description: {
-        type: String
+        type: String,
+        required: true,
     },
     creator: {
-        type: String
+        name: {
+            type: String,
+            required: true,
+        },
+        uid : {
+            type: String,
+            required: true,
+        }
     }
 
 },{

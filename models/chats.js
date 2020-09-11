@@ -3,8 +3,10 @@ const Schema = mongoose.Schema;
 
 var chatSchema = new Schema({
     message: String,
-    name: String,
-    author: String,
+    author: {
+        name: String,
+        uid : String
+    },
     room : {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
