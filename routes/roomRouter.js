@@ -196,7 +196,7 @@ roomRouter.route('/:roomId')
             const retVar = {
                 "room":"deleted",
                 "roomId" : data._id,
-                "messages deleted": resp.deletedCount
+                "messages_deleted": resp.deletedCount
             }
             res.json(retVar);
         }, (err) => next(err))

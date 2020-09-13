@@ -3,6 +3,9 @@ const mongoose = require('mongoose')
 var express = require('express');
 const cors = require('cors');
 var path = require('path');
+var passport = require('passport');
+
+var usersRouter = require('./routes/users');
 const roomRouter = require('./routes/roomRouter');
 const chatRouter = require('./routes/chatRouter.js');
 
@@ -30,17 +33,19 @@ app.set('view engine', 'jade');
 
 app.use(cors())
 
-// app.use((req,res,next) => {
-//     res.setHeader("Access-Control-Allow-Origin","*");
-//     res.setHeader("Access-Control-Allow-Headers","*");
-//     next();
-// } )
+app.use((req,res,next) => {
+    res.setHeader("Access-Control-Allow-Origin","*");
+    res.setHeader("Access-Control-Allow-Headers","*");
+    next();
+} )
 
 
 
 app.get('/',(req,res)=>res.status(200).send('hello world'))
 
+app.use(passport.initialize());
 
+app.use('/users', usersRouter);
 app.use('/rooms',roomRouter);
 // app.use('/messages',messageRouter);
 app.use('/chats',chatRouter);
